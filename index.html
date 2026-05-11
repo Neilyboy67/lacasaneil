@@ -574,15 +574,19 @@ header {
 .host-section h2 { color: white; }
 .host-grid {
   display: grid;
-  grid-template-columns: 200px 1fr;
+  grid-template-columns: 220px 1fr;
   gap: 3rem;
   align-items: center;
 }
 .host-photo {
-  width: 200px;
-  height: 200px;
+  width: 220px;
+  height: 220px;
   border-radius: 50%;
-  background: var(--sand-warm) url('images/photo-13.jpg') center / cover;
+  object-fit: cover;
+  object-position: center 22%;
+  background: var(--sand-warm);
+  border: 4px solid rgba(255, 255, 255, 0.12);
+  display: block;
 }
 .host-section p { color: rgba(255, 255, 255, 0.85); font-size: 1.05rem; }
 .host-meta { display: flex; gap: 2rem; margin-top: 1rem; flex-wrap: wrap; font-size: 0.9rem; }
@@ -860,7 +864,7 @@ footer .footer-row {
 <section class="section host-section">
   <div class="container">
     <div class="host-grid">
-      <div class="host-photo"></div>
+      <img class="host-photo" src="images/host-neil.jpg" alt="Neil — your host" loading="lazy">
       <div>
         <span class="section-eyebrow" style="color: rgba(255,255,255,0.7);">Meet your host</span>
         <h2>Hosted by Neil</h2>
