@@ -13,6 +13,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13"></script>
 
 <style>
 :root {
@@ -948,10 +950,12 @@ document.addEventListener('keydown', (e) => {
 const ICAL_URL = 'https://www.airbnb.ae/calendar/ical/40308509.ics?t=926a6982b617482b9dbbf6c71addc6c5';
 const CORS_PROXY = 'https://corsproxy.io/?';
 
+// Module-scope so the form datepickers can read this after iCal loads
+let bookedDateStrings = new Set();
+
 async function loadAvailability() {
   const loading = document.getElementById('calendar-loading');
   const error = document.getElementById('calendar-error');
-  const cal = document.getElementById('calendar');
 
   try {
     const res = await fetch(CORS_PROXY + encodeURIComponent(ICAL_URL));
@@ -959,7 +963,6 @@ async function loadAvailability() {
     const text = await res.text();
 
     // Parse iCal — extract VEVENT blocks with DTSTART and DTEND
-    const bookedDates = new Set();
     const eventBlocks = text.split('BEGIN:VEVENT');
     for (let i = 1; i < eventBlocks.length; i++) {
       const block = eventBlocks[i];
@@ -970,12 +973,13 @@ async function loadAvailability() {
       const end = parseICalDate(endMatch[1]);
       // Booked nights are [start, end) — checkout day is free
       for (let d = new Date(start); d < end; d.setDate(d.getDate() + 1)) {
-        bookedDates.add(d.toISOString().slice(0, 10));
+        bookedDateStrings.add(d.toISOString().slice(0, 10));
       }
     }
 
     loading.style.display = 'none';
-    renderCalendar(bookedDates);
+    renderCalendar(bookedDateStrings);
+    refreshDatepickerDisabled();
   } catch (e) {
     loading.style.display = 'none';
     error.textContent = 'Live calendar unavailable right now. Please send an enquiry below and Neil will confirm availability within an hour.';
@@ -1060,12 +1064,75 @@ loadAvailability();
 const form = document.getElementById('enquiry-form');
 const formStatus = document.getElementById('form-status');
 
+// Flatpickr datepickers — replace native date inputs and grey out booked dates
+let checkinPicker, checkoutPicker;
+
+function initDatepickers() {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  checkinPicker = flatpickr('#checkin', {
+    minDate: 'today',
+    dateFormat: 'Y-m-d',
+    altInput: true,
+    altFormat: 'D j M Y',
+    disable: Array.from(bookedDateStrings),
+    disableMobile: true,
+    onChange: (dates) => {
+      if (!dates[0]) return;
+      const nextDay = new Date(dates[0].getTime() + 86400000);
+      // Find next booked night AFTER check-in so check-out can't span a booking
+      let nextBooked = null;
+      for (const ds of bookedDateStrings) {
+        const d = new Date(ds);
+        if (d > dates[0] && (!nextBooked || d < nextBooked)) nextBooked = d;
+      }
+      checkoutPicker.set('minDate', nextDay);
+      checkoutPicker.set('maxDate', nextBooked || new Date(Date.now() + 365 * 86400000));
+      // Clear check-out if it's no longer valid
+      const co = checkoutPicker.selectedDates[0];
+      if (co && (co <= dates[0] || (nextBooked && co > nextBooked))) checkoutPicker.clear();
+    }
+  });
+
+  checkoutPicker = flatpickr('#checkout', {
+    minDate: new Date(Date.now() + 86400000),
+    dateFormat: 'Y-m-d',
+    altInput: true,
+    altFormat: 'D j M Y',
+    disable: Array.from(bookedDateStrings),
+    disableMobile: true
+  });
+}
+
+function refreshDatepickerDisabled() {
+  const disable = Array.from(bookedDateStrings);
+  if (checkinPicker) checkinPicker.set('disable', disable);
+  if (checkoutPicker) checkoutPicker.set('disable', disable);
+}
+
+function rangeOverlapsBookings(checkinStr, checkoutStr) {
+  const start = new Date(checkinStr);
+  const end = new Date(checkoutStr);
+  for (let d = new Date(start); d < end; d.setDate(d.getDate() + 1)) {
+    if (bookedDateStrings.has(d.toISOString().slice(0, 10))) return true;
+  }
+  return false;
+}
+
+initDatepickers();
+
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
   const checkin = form.checkin.value;
   const checkout = form.checkout.value;
   if (checkin && checkout && checkin >= checkout) {
     formStatus.textContent = 'Check-out date must be after check-in.';
+    formStatus.className = 'form-status error';
+    return;
+  }
+  if (checkin && checkout && rangeOverlapsBookings(checkin, checkout)) {
+    formStatus.textContent = 'Those dates overlap with an existing booking. Try different dates or send a message and Neil will help.';
     formStatus.className = 'form-status error';
     return;
   }
@@ -1084,6 +1151,8 @@ form.addEventListener('submit', async (e) => {
       formStatus.textContent = '✓ Enquiry sent. Neil will reply within an hour.';
       formStatus.className = 'form-status success';
       form.reset();
+      checkinPicker.clear();
+      checkoutPicker.clear();
     } else {
       throw new Error('Send failed');
     }
@@ -1092,13 +1161,6 @@ form.addEventListener('submit', async (e) => {
     formStatus.className = 'form-status error';
   }
 });
-
-// Set default check-in to tomorrow, check-out to a week later
-const today = new Date();
-const tomorrow = new Date(today.getTime() + 86400000);
-const nextWeek = new Date(today.getTime() + 8 * 86400000);
-document.getElementById('checkin').min = tomorrow.toISOString().slice(0, 10);
-document.getElementById('checkout').min = nextWeek.toISOString().slice(0, 10);
 </script>
 
 </body>
