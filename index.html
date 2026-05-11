@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>La Casa Neil — Paradise retreat in Spain's Holiday Haven | Calahonda, Costa del Sol</title>
+<meta name="description" content="A luxury 2-bed apartment in Calahonda, Costa del Sol. Sea views, sun-soaked terrace, four communal pools. Sleeps 4. Book direct, no fees." />
+<meta property="og:title" content="La Casa Neil — Paradise retreat in Spain's Holiday Haven" />
+<meta property="og:description" content="Luxury 2-bed holiday rental in Calahonda, Costa del Sol. Sea views, pools, sun-soaked terrace. Sleeps 4." />
+<meta property="og:image" content="images/photo-02.jpg" />
+<meta property="og:type" content="website" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --sand: #fbf6ee;
+  --sand-warm: #f4ead9;
+  --navy: #1c2b40;
+  --navy-soft: #2c3e5a;
+  --terracotta: #c75c3c;
+  --terracotta-dark: #a64a2e;
+  --ink: #2a2a2a;
+  --muted: #6b6b6b;
+  --border: rgba(28, 43, 64, 0.12);
+  --available: #c9e3c5;
+  --available-border: #84b07c;
+  --booked: #e8b8a8;
+  --booked-border: #c75c3c;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--sand);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 500;
+  color: var(--navy);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+h1 { font-size: clamp(2.5rem, 6vw, 5rem); }
+h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem; }
+h3 { font-size: clamp(1.4rem, 2.5vw, 1.75rem); margin-bottom: 0.5rem; }
+
+p { margin-bottom: 1rem; color: var(--ink); }
+
+a { color: var(--terracotta); text-decoration: none; transition: opacity 0.2s; }
+a:hover { opacity: 0.75; }
+
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.section {
+  padding: clamp(3.5rem, 8vw, 6rem) 0;
+}
+
+.section-eyebrow {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  margin-bottom: 0.75rem;
+}
+
+/* ---------- HEADER ---------- */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(251, 246, 238, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+.logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  font-size: 1.4rem;
+  color: var(--navy);
+  letter-spacing: 0.02em;
+}
+.nav {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+.nav a {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--navy);
+  letter-spacing: 0.02em;
+}
+.nav a.btn { color: white; }
+
+.btn {
+  display: inline-block;
+  padding: 0.85rem 1.6rem;
+  background: var(--terracotta);
+  color: white;
+  border-radius: 999px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.btn:hover { background: var(--terracotta-dark); opacity: 1; transform: translateY(-1px); }
+.btn-outline {
+  background: transparent;
+  color: var(--navy);
+  border: 1px solid var(--navy);
+}
+.btn-outline:hover { background: var(--navy); color: white; }
+
+@media (max-width: 720px) {
+  .nav { gap: 1rem; }
+  .nav a:not(.btn) { display: none; }
+}
+
+/* ---------- HERO ---------- */
+.hero {
+  position: relative;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  background-image: linear-gradient(135deg, rgba(28, 43, 64, 0.35), rgba(28, 43, 64, 0.55)), url('images/photo-02.jpg');
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+.hero-content {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 6rem 1.5rem 4rem;
+  width: 100%;
+}
+.hero h1 { color: white; max-width: 800px; }
+.hero .eyebrow {
+  display: inline-block;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 1.2rem;
+  font-weight: 500;
+}
+.hero .lede {
+  max-width: 600px;
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  color: rgba(255, 255, 255, 0.92);
+  margin: 1.25rem 0 2rem;
+  line-height: 1.65;
+}
+.hero .meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  max-width: 720px;
+}
+.hero .meta-row span { display: inline-flex; align-items: center; gap: 0.4rem; }
+
+/* ---------- AT A GLANCE ---------- */
+.glance {
+  background: var(--sand-warm);
+  border-bottom: 1px solid var(--border);
+}
+.glance-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1.5rem 2rem;
+  align-items: start;
+}
+.glance-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.4rem;
+}
+.glance-item .icon {
+  font-size: 1.75rem;
+  margin-bottom: 0.4rem;
+}
+.glance-item .label {
+  font-size: 0.85rem;
+  color: var(--navy);
+  font-weight: 500;
+}
+
+/* ---------- ABOUT ---------- */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+.about-text p { font-size: 1.05rem; }
+.about-img {
+  border-radius: 4px;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  background: var(--border);
+}
+.about-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+@media (max-width: 800px) {
+  .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+}
+
+/* ---------- GALLERY ---------- */
+.gallery-section { background: var(--sand-warm); }
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 180px;
+  gap: 12px;
+}
+.gallery a {
+  display: block;
+  overflow: hidden;
+  border-radius: 3px;
+  background: var(--border);
+  cursor: pointer;
+}
+.gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+.gallery a:hover img { transform: scale(1.04); }
+.gallery a.tall { grid-row: span 2; }
+.gallery a.wide { grid-column: span 2; }
+
+@media (max-width: 800px) {
+  .gallery { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 140px; }
+  .gallery a.wide { grid-column: span 2; }
+  .gallery a.tall { grid-row: span 1; }
+}
+
+/* Lightbox */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 2rem;
+  cursor: pointer;
+}
+.lightbox.open { display: flex; }
+.lightbox img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.lightbox .close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  color: white;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.lightbox .arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  border: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.lightbox .arrow.prev { left: 1.5rem; }
+.lightbox .arrow.next { right: 1.5rem; }
+.lightbox .arrow:hover { background: rgba(255, 255, 255, 0.3); }
+
+/* ---------- ROOMS ---------- */
+.rooms-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+.room-card {
+  background: var(--sand-warm);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.room-card img { width: 100%; height: 280px; object-fit: cover; display: block; }
+.room-card .body { padding: 1.5rem 1.75rem; }
+.room-card h3 { margin-bottom: 0.25rem; }
+.room-card .meta { color: var(--muted); font-size: 0.95rem; }
+.rooms-note {
+  margin-top: 2rem;
+  text-align: center;
+  font-style: italic;
+  color: var(--muted);
+}
+
+@media (max-width: 700px) {
+  .rooms-grid { grid-template-columns: 1fr; }
+}
+
+/* ---------- LOCATION ---------- */
+.location-section { background: var(--sand-warm); }
+.location-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+.location-grid iframe {
+  width: 100%;
+  height: 460px;
+  border: 0;
+  border-radius: 4px;
+}
+.nearby-cols {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+.nearby-block h4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--terracotta);
+  margin-bottom: 0.75rem;
+}
+.nearby-block ul { list-style: none; }
+.nearby-block li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(28, 43, 64, 0.08);
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+.nearby-block li:last-child { border-bottom: 0; }
+
+@media (max-width: 900px) {
+  .location-grid { grid-template-columns: 1fr; }
+}
+
+/* ---------- AVAILABILITY ---------- */
+.calendar-wrap {
+  background: white;
+  border-radius: 4px;
+  padding: 2rem;
+  border: 1px solid var(--border);
+}
+.calendar-legend {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  font-size: 0.9rem;
+}
+.calendar-legend .swatch {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+.swatch.available { background: var(--available); border: 1px solid var(--available-border); }
+.swatch.booked { background: var(--booked); border: 1px solid var(--booked-border); }
+#calendar-loading { color: var(--muted); padding: 2rem; text-align: center; }
+#calendar-error { color: #b85042; padding: 1rem; background: #fdf0ec; border-radius: 4px; margin-bottom: 1rem; display: none; }
+
+/* Custom calendar grid */
+.cal-months {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+.cal-month {
+  background: var(--sand);
+  padding: 1rem;
+  border-radius: 4px;
+}
+.cal-month-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  color: var(--navy);
+  margin-bottom: 0.75rem;
+  text-align: center;
+}
+.cal-weekdays, .cal-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+.cal-weekday {
+  text-align: center;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--muted);
+  padding: 0.25rem 0;
+  letter-spacing: 0.05em;
+}
+.cal-day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  border-radius: 3px;
+  color: var(--ink);
+}
+.cal-day.empty { visibility: hidden; }
+.cal-day.past { color: rgba(0,0,0,0.25); }
+.cal-day.available { background: var(--available); }
+.cal-day.booked { background: var(--booked); color: var(--terracotta-dark); }
+.cal-day.today { font-weight: 700; outline: 2px solid var(--terracotta); outline-offset: -2px; }
+
+/* ---------- REVIEWS ---------- */
+.reviews-section { background: var(--sand-warm); }
+.reviews-stats {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+.rating-big {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 4rem;
+  color: var(--navy);
+  line-height: 1;
+}
+.stars { color: var(--terracotta); letter-spacing: 0.05em; font-size: 1.2rem; }
+.reviews-meta { color: var(--muted); font-size: 0.95rem; }
+
+.review-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.75rem;
+}
+.review-card {
+  background: white;
+  padding: 1.75rem;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+}
+.review-card .stars { font-size: 0.9rem; margin-bottom: 0.75rem; }
+.review-card blockquote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem;
+  font-style: italic;
+  color: var(--navy-soft);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+.review-card cite {
+  font-style: normal;
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+/* ---------- ENQUIRY FORM ---------- */
+.form-wrap {
+  max-width: 720px;
+  margin: 0 auto;
+}
+.form-note {
+  text-align: center;
+  color: var(--muted);
+  margin-bottom: 2.5rem;
+  font-size: 0.95rem;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+.form-grid .full { grid-column: span 2; }
+.field label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--navy);
+  margin-bottom: 0.4rem;
+}
+.field input, .field textarea, .field select {
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  background: white;
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--ink);
+  transition: border-color 0.2s;
+}
+.field input:focus, .field textarea:focus, .field select:focus {
+  outline: none;
+  border-color: var(--terracotta);
+}
+.field textarea { min-height: 120px; resize: vertical; }
+.form-submit {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+.form-submit .btn { font-size: 1rem; padding: 1rem 2.5rem; }
+.form-status {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  min-height: 1.5rem;
+}
+.form-status.success { color: #2d7a3a; }
+.form-status.error { color: #b85042; }
+
+@media (max-width: 600px) {
+  .form-grid { grid-template-columns: 1fr; }
+  .form-grid .full { grid-column: span 1; }
+}
+
+/* ---------- HOST ---------- */
+.host-section {
+  background: var(--navy);
+  color: rgba(255, 255, 255, 0.92);
+}
+.host-section h2 { color: white; }
+.host-grid {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+.host-photo {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: var(--sand-warm) url('images/photo-13.jpg') center / cover;
+}
+.host-section p { color: rgba(255, 255, 255, 0.85); font-size: 1.05rem; }
+.host-meta { display: flex; gap: 2rem; margin-top: 1rem; flex-wrap: wrap; font-size: 0.9rem; }
+.host-meta strong { color: white; }
+
+@media (max-width: 700px) {
+  .host-grid { grid-template-columns: 1fr; text-align: center; }
+  .host-photo { margin: 0 auto; }
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+  background: var(--navy);
+  color: rgba(255, 255, 255, 0.65);
+  padding: 2.5rem 0;
+  text-align: center;
+  font-size: 0.85rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+footer a { color: rgba(255, 255, 255, 0.85); }
+footer .footer-row {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.75rem;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="#top" class="logo">La Casa Neil</a>
+    <nav class="nav">
+      <a href="#about">About</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#location">Location</a>
+      <a href="#availability">Availability</a>
+      <a href="#enquiry" class="btn">Check availability</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="hero-content">
+    <span class="eyebrow">Paradise retreat in Spain's holiday haven</span>
+    <h1>La Casa Neil</h1>
+    <p class="lede">A recently refurbished 2-bedroom apartment in the heart of Calahonda, Costa del Sol. Sun-soaked terrace with endless sea views, four communal pools, and gleaming marble floors throughout. Sleeps four.</p>
+    <a href="#enquiry" class="btn">Check availability</a>
+    <div class="meta-row">
+      <span>2 bedrooms</span>
+      <span>·</span>
+      <span>1 bathroom</span>
+      <span>·</span>
+      <span>Sleeps 4</span>
+      <span>·</span>
+      <span>★ 4.68 from 25 reviews</span>
+    </div>
+  </div>
+</section>
+
+<section class="section glance">
+  <div class="container">
+    <div class="glance-grid">
+      <div class="glance-item"><div class="icon">🛏️</div><div class="label">2 bedrooms</div></div>
+      <div class="glance-item"><div class="icon">🛁</div><div class="label">Designer bathroom</div></div>
+      <div class="glance-item"><div class="icon">👥</div><div class="label">Sleeps 4</div></div>
+      <div class="glance-item"><div class="icon">🌊</div><div class="label">Sea views</div></div>
+      <div class="glance-item"><div class="icon">🏊</div><div class="label">4 communal pools</div></div>
+      <div class="glance-item"><div class="icon">☀️</div><div class="label">Sun-soaked terrace</div></div>
+      <div class="glance-item"><div class="icon">🅿️</div><div class="label">Free parking</div></div>
+      <div class="glance-item"><div class="icon">📶</div><div class="label">WiFi</div></div>
+      <div class="glance-item"><div class="icon">🔥</div><div class="label">Webber BBQ</div></div>
+      <div class="glance-item"><div class="icon">📺</div><div class="label">Smart TV</div></div>
+      <div class="glance-item"><div class="icon">🍳</div><div class="label">Full kitchen</div></div>
+      <div class="glance-item"><div class="icon">🔑</div><div class="label">Self check-in</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text">
+        <span class="section-eyebrow">About the property</span>
+        <h2>A boutique apartment in the heart of Calahonda</h2>
+        <p>Freshly refurbished for the 2026 holiday season and beyond, our luxury 2-bed apartment blends modern comfort with Spanish charm. Gleaming marble floors throughout, a brand-new designer bathroom, and mesmerising sea views that stretch to the horizon. The south-facing terrace serves up unforgettable sunsets — perfect for romantic evenings, leisurely BBQs and quiet mornings with coffee.</p>
+        <p>Inside: a fully-equipped kitchen, living area with smart TV and WiFi, and a bright sunroom that doubles as a home office. Two spacious bedrooms (one double, one twin) plus a sofa bed sleep four. Air conditioning in the lounge and master bedroom. Four communal pools just steps from the door, Oxygen Gym on the doorstep, and free parking outside.</p>
+      </div>
+      <div class="about-img"><img src="images/photo-01.jpg" alt="Kitchen at La Casa Neil" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section gallery-section" id="gallery">
+  <div class="container">
+    <div style="text-align: center; margin-bottom: 2.5rem;">
+      <span class="section-eyebrow">Photo tour</span>
+      <h2>Take a look around</h2>
+    </div>
+    <div class="gallery" id="gallery">
+      <a class="tall" data-idx="1"><img src="images/photo-02.jpg" alt="Terrace at sunset" loading="lazy"></a>
+      <a data-idx="2"><img src="images/photo-03.jpg" alt="Communal pool" loading="lazy"></a>
+      <a data-idx="3"><img src="images/photo-04.jpg" alt="Living area" loading="lazy"></a>
+      <a data-idx="4"><img src="images/photo-05.jpg" alt="Bedroom" loading="lazy"></a>
+      <a class="wide" data-idx="5"><img src="images/photo-16.jpg" alt="Property view" loading="lazy"></a>
+      <a data-idx="6"><img src="images/photo-06.jpg" alt="Apartment interior" loading="lazy"></a>
+      <a data-idx="7"><img src="images/photo-13.jpg" alt="Apartment view" loading="lazy"></a>
+      <a class="tall" data-idx="8"><img src="images/photo-20.jpg" alt="Bright sunroom with views" loading="lazy"></a>
+      <a data-idx="9"><img src="images/photo-14.jpg" alt="Property feature" loading="lazy"></a>
+      <a data-idx="10"><img src="images/photo-15.jpg" alt="Property feature" loading="lazy"></a>
+      <a data-idx="11"><img src="images/photo-17.jpg" alt="Property feature" loading="lazy"></a>
+      <a data-idx="12"><img src="images/photo-18.jpg" alt="Property feature" loading="lazy"></a>
+      <a class="wide" data-idx="13"><img src="images/photo-19.jpg" alt="Property feature" loading="lazy"></a>
+      <a data-idx="14"><img src="images/photo-01.jpg" alt="Kitchen detail" loading="lazy"></a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="rooms">
+  <div class="container">
+    <div style="text-align: center; margin-bottom: 2.5rem;">
+      <span class="section-eyebrow">Where you'll stay</span>
+      <h2>Two bedrooms, sleeps four</h2>
+    </div>
+    <div class="rooms-grid">
+      <div class="room-card">
+        <img src="images/photo-05.jpg" alt="Bedroom 1 — double bed">
+        <div class="body">
+          <h3>Bedroom 1</h3>
+          <div class="meta">1 double bed · Air-conditioned · Sea-view window</div>
+        </div>
+      </div>
+      <div class="room-card">
+        <img src="images/photo-14.jpg" alt="Bedroom 2 — twin beds">
+        <div class="body">
+          <h3>Bedroom 2</h3>
+          <div class="meta">2 single beds · Cot available</div>
+        </div>
+      </div>
+    </div>
+    <p class="rooms-note">The sofa in the living room folds out into an additional double bed.</p>
+  </div>
+</section>
+
+<section class="section location-section" id="location">
+  <div class="container">
+    <div style="text-align: center; margin-bottom: 2.5rem;">
+      <span class="section-eyebrow">Where you'll be</span>
+      <h2>Calahonda, Mijas — Costa del Sol</h2>
+    </div>
+    <div class="location-grid">
+      <iframe
+        src="https://maps.google.com/maps?q=36.5021630,-4.7275100&z=15&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="La Casa Neil — Calahonda, Mijas, Spain"></iframe>
+      <div class="nearby-cols">
+        <div class="nearby-block">
+          <h4>Within 30 minutes</h4>
+          <ul>
+            <li>Calahonda Beach — a stone's throw away</li>
+            <li>Malaga Airport — 30 min drive</li>
+            <li>Marbella — old town, boutiques, beach clubs</li>
+            <li>Fuengirola — sandy beach &amp; lively centre</li>
+            <li>La Siesta Golf Club — par-3 course</li>
+            <li>Cabopino Beach — fine sand, clear waters</li>
+          </ul>
+        </div>
+        <div class="nearby-block">
+          <h4>Within 1 hour</h4>
+          <ul>
+            <li>Malaga city — Picasso Museum, old town</li>
+            <li>Ronda — El Tajo gorge, historic centre</li>
+            <li>Torremolinos — beach &amp; nightlife</li>
+            <li>Alhaurín Golf — championship course</li>
+            <li>Sierra de las Nieves National Park</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="availability">
+  <div class="container">
+    <div style="text-align: center; margin-bottom: 2rem;">
+      <span class="section-eyebrow">Live availability</span>
+      <h2>Check the calendar</h2>
+      <p style="max-width: 600px; margin: 0 auto; color: var(--muted);">Dates synced live with our Airbnb calendar. <strong style="color: var(--terracotta-dark);">Coloured dates are taken</strong> — everything else is available.</p>
+    </div>
+    <div class="calendar-wrap">
+      <div class="calendar-legend">
+        <span><span class="swatch booked"></span>Booked</span>
+        <span><span class="swatch available"></span>Available</span>
+      </div>
+      <div id="calendar-error"></div>
+      <div id="calendar-loading">Loading availability…</div>
+      <div id="calendar" class="cal-months"></div>
+      <div style="text-align: center; margin-top: 1.5rem;">
+        <a href="#enquiry" class="btn">Request dates →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section reviews-section" id="reviews">
+  <div class="container">
+    <span class="section-eyebrow">Guest reviews</span>
+    <h2>What recent guests say</h2>
+    <div class="reviews-stats">
+      <div class="rating-big">4.68</div>
+      <div>
+        <div class="stars">★★★★★</div>
+        <div class="reviews-meta">From 25 reviews on Airbnb</div>
+      </div>
+    </div>
+    <div class="review-grid">
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <blockquote>"We stayed 4 weeks with 2 adults and 3 children and had a wonderful experience. Neil is a very friendly and responsive host. The house was clean, well-kept, nicely furnished. The pools were private, quiet, perfect for relaxing. I would highly recommend Neil and his accommodation."</blockquote>
+        <cite>— Ruben, August 2025</cite>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Fabulous place, a great terrace with beautiful views. A very quiet place with a lot of peace. The apartment has everything you need."</blockquote>
+        <cite>— Daniel, August 2025</cite>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Great stay, thanks Neil. We will be returning next year for sure. Responsive host, amazing pool and views."</blockquote>
+        <cite>— Isobel, August 2024</cite>
+      </div>
+    </div>
+    <p style="text-align: center; margin-top: 2rem;"><a href="https://www.airbnb.co.uk/rooms/40308509" target="_blank" rel="noopener">Read all 25 reviews on Airbnb →</a></p>
+  </div>
+</section>
+
+<section class="section" id="enquiry">
+  <div class="container form-wrap">
+    <div style="text-align: center; margin-bottom: 1rem;">
+      <span class="section-eyebrow">Request your dates</span>
+      <h2>Book direct with Neil</h2>
+    </div>
+    <p class="form-note">Bookings handled directly — no booking fees. Neil typically responds within an hour to confirm availability and arrange payment.</p>
+    <form id="enquiry-form" action="https://formsubmit.co/neilgallacher1979@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="New enquiry — La Casa Neil">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://lacasaneil.com/?sent=1">
+      <input type="text" name="_honey" style="display:none">
+      <div class="form-grid">
+        <div class="field"><label for="name">Full name</label><input id="name" type="text" name="name" required></div>
+        <div class="field"><label for="email">Email</label><input id="email" type="email" name="email" required></div>
+        <div class="field"><label for="phone">Phone (optional)</label><input id="phone" type="tel" name="phone"></div>
+        <div class="field"><label for="guests">Number of guests</label>
+          <select id="guests" name="guests" required>
+            <option value="1">1 guest</option>
+            <option value="2" selected>2 guests</option>
+            <option value="3">3 guests</option>
+            <option value="4">4 guests</option>
+          </select>
+        </div>
+        <div class="field"><label for="checkin">Check-in date</label><input id="checkin" type="date" name="checkin" required></div>
+        <div class="field"><label for="checkout">Check-out date</label><input id="checkout" type="date" name="checkout" required></div>
+        <div class="field full"><label for="message">Message (optional)</label><textarea id="message" name="message" placeholder="Anything you'd like Neil to know — travelling with children, special occasions, questions about the area…"></textarea></div>
+      </div>
+      <div class="form-submit"><button type="submit" class="btn">Send enquiry</button></div>
+      <div id="form-status" class="form-status"></div>
+    </form>
+  </div>
+</section>
+
+<section class="section host-section">
+  <div class="container">
+    <div class="host-grid">
+      <div class="host-photo"></div>
+      <div>
+        <span class="section-eyebrow" style="color: rgba(255,255,255,0.7);">Meet your host</span>
+        <h2>Hosted by Neil</h2>
+        <p>Six years hosting on Airbnb. 100% response rate, replies within an hour. A free spirit who loves to travel — happy to share local tips on Calahonda, Marbella and the wider Costa del Sol.</p>
+        <div class="host-meta">
+          <span><strong>6 years</strong> hosting</span>
+          <span><strong>4.68★</strong> average rating</span>
+          <span><strong>100%</strong> response rate</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="lightbox" id="lightbox">
+  <button class="close" aria-label="Close">✕</button>
+  <button class="arrow prev" aria-label="Previous">‹</button>
+  <button class="arrow next" aria-label="Next">›</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-row">
+      <span>La Casa Neil</span>
+      <span>·</span>
+      <span>Calahonda, Mijas, Costa del Sol, Spain</span>
+      <span>·</span>
+      <a href="mailto:neilgallacher1979@gmail.com">neilgallacher1979@gmail.com</a>
+    </div>
+    <div>© 2026 La Casa Neil · <a href="https://www.airbnb.co.uk/rooms/40308509" target="_blank" rel="noopener">View original Airbnb listing</a></div>
+  </div>
+</footer>
+
+<script>
+// ============ LIGHTBOX ============
+const gallery = document.getElementById('gallery');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const galleryItems = Array.from(gallery.querySelectorAll('a'));
+let currentIdx = 0;
+
+galleryItems.forEach((item, i) => {
+  item.addEventListener('click', (e) => {
+    e.preventDefault();
+    currentIdx = i;
+    showLightbox();
+  });
+});
+
+function showLightbox() {
+  const img = galleryItems[currentIdx].querySelector('img');
+  lightboxImg.src = img.src;
+  lightboxImg.alt = img.alt;
+  lightbox.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function hideLightbox() {
+  lightbox.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+lightbox.querySelector('.close').addEventListener('click', hideLightbox);
+lightbox.addEventListener('click', (e) => { if (e.target === lightbox || e.target === lightboxImg) hideLightbox(); });
+
+lightbox.querySelector('.prev').addEventListener('click', (e) => {
+  e.stopPropagation();
+  currentIdx = (currentIdx - 1 + galleryItems.length) % galleryItems.length;
+  showLightbox();
+});
+lightbox.querySelector('.next').addEventListener('click', (e) => {
+  e.stopPropagation();
+  currentIdx = (currentIdx + 1) % galleryItems.length;
+  showLightbox();
+});
+
+document.addEventListener('keydown', (e) => {
+  if (!lightbox.classList.contains('open')) return;
+  if (e.key === 'Escape') hideLightbox();
+  if (e.key === 'ArrowLeft') lightbox.querySelector('.prev').click();
+  if (e.key === 'ArrowRight') lightbox.querySelector('.next').click();
+});
+
+// ============ AVAILABILITY CALENDAR ============
+// Fetches Airbnb iCal feed via a CORS proxy and renders a 6-month rolling calendar.
+const ICAL_URL = 'https://www.airbnb.ae/calendar/ical/40308509.ics?t=926a6982b617482b9dbbf6c71addc6c5';
+const CORS_PROXY = 'https://corsproxy.io/?';
+
+async function loadAvailability() {
+  const loading = document.getElementById('calendar-loading');
+  const error = document.getElementById('calendar-error');
+  const cal = document.getElementById('calendar');
+
+  try {
+    const res = await fetch(CORS_PROXY + encodeURIComponent(ICAL_URL));
+    if (!res.ok) throw new Error('Could not load calendar');
+    const text = await res.text();
+
+    // Parse iCal — extract VEVENT blocks with DTSTART and DTEND
+    const bookedDates = new Set();
+    const eventBlocks = text.split('BEGIN:VEVENT');
+    for (let i = 1; i < eventBlocks.length; i++) {
+      const block = eventBlocks[i];
+      const startMatch = block.match(/DTSTART(?:;VALUE=DATE)?:(\d{8})/);
+      const endMatch = block.match(/DTEND(?:;VALUE=DATE)?:(\d{8})/);
+      if (!startMatch || !endMatch) continue;
+      const start = parseICalDate(startMatch[1]);
+      const end = parseICalDate(endMatch[1]);
+      // Booked nights are [start, end) — checkout day is free
+      for (let d = new Date(start); d < end; d.setDate(d.getDate() + 1)) {
+        bookedDates.add(d.toISOString().slice(0, 10));
+      }
+    }
+
+    loading.style.display = 'none';
+    renderCalendar(bookedDates);
+  } catch (e) {
+    loading.style.display = 'none';
+    error.textContent = 'Live calendar unavailable right now. Please send an enquiry below and Neil will confirm availability within an hour.';
+    error.style.display = 'block';
+    console.error(e);
+  }
+}
+
+function parseICalDate(s) {
+  return new Date(Date.UTC(+s.slice(0, 4), +s.slice(4, 6) - 1, +s.slice(6, 8)));
+}
+
+function renderCalendar(bookedDates) {
+  const cal = document.getElementById('calendar');
+  cal.innerHTML = '';
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const todayStr = today.toISOString().slice(0, 10);
+
+  // Show 6 months starting from current month
+  for (let m = 0; m < 6; m++) {
+    const monthStart = new Date(today.getFullYear(), today.getMonth() + m, 1);
+    cal.appendChild(buildMonth(monthStart, bookedDates, todayStr));
+  }
+}
+
+function buildMonth(monthStart, bookedDates, todayStr) {
+  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const weekdays = ['Mo','Tu','We','Th','Fr','Sa','Su'];
+
+  const wrap = document.createElement('div');
+  wrap.className = 'cal-month';
+
+  const title = document.createElement('div');
+  title.className = 'cal-month-title';
+  title.textContent = `${months[monthStart.getMonth()]} ${monthStart.getFullYear()}`;
+  wrap.appendChild(title);
+
+  const wkRow = document.createElement('div');
+  wkRow.className = 'cal-weekdays';
+  weekdays.forEach(w => {
+    const d = document.createElement('div');
+    d.className = 'cal-weekday';
+    d.textContent = w;
+    wkRow.appendChild(d);
+  });
+  wrap.appendChild(wkRow);
+
+  const daysRow = document.createElement('div');
+  daysRow.className = 'cal-days';
+
+  // Monday-start offset
+  const firstDay = monthStart.getDay();
+  const offset = (firstDay + 6) % 7;
+  for (let i = 0; i < offset; i++) {
+    const empty = document.createElement('div');
+    empty.className = 'cal-day empty';
+    daysRow.appendChild(empty);
+  }
+
+  const daysInMonth = new Date(monthStart.getFullYear(), monthStart.getMonth() + 1, 0).getDate();
+  for (let day = 1; day <= daysInMonth; day++) {
+    const date = new Date(monthStart.getFullYear(), monthStart.getMonth(), day);
+    const iso = date.toISOString().slice(0, 10);
+    const cell = document.createElement('div');
+    cell.className = 'cal-day';
+    cell.textContent = day;
+    if (iso < todayStr) cell.classList.add('past');
+    else if (bookedDates.has(iso)) cell.classList.add('booked');
+    else cell.classList.add('available');
+    if (iso === todayStr) cell.classList.add('today');
+    daysRow.appendChild(cell);
+  }
+
+  wrap.appendChild(daysRow);
+  return wrap;
+}
+
+loadAvailability();
+
+// ============ ENQUIRY FORM ============
+const form = document.getElementById('enquiry-form');
+const formStatus = document.getElementById('form-status');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const checkin = form.checkin.value;
+  const checkout = form.checkout.value;
+  if (checkin && checkout && checkin >= checkout) {
+    formStatus.textContent = 'Check-out date must be after check-in.';
+    formStatus.className = 'form-status error';
+    return;
+  }
+
+  formStatus.textContent = 'Sending…';
+  formStatus.className = 'form-status';
+
+  try {
+    const formData = new FormData(form);
+    const res = await fetch(form.action, {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    });
+    if (res.ok) {
+      formStatus.textContent = '✓ Enquiry sent. Neil will reply within an hour.';
+      formStatus.className = 'form-status success';
+      form.reset();
+    } else {
+      throw new Error('Send failed');
+    }
+  } catch (err) {
+    formStatus.textContent = 'Could not send. Please email neilgallacher1979@gmail.com directly.';
+    formStatus.className = 'form-status error';
+  }
+});
+
+// Set default check-in to tomorrow, check-out to a week later
+const today = new Date();
+const tomorrow = new Date(today.getTime() + 86400000);
+const nextWeek = new Date(today.getTime() + 8 * 86400000);
+document.getElementById('checkin').min = tomorrow.toISOString().slice(0, 10);
+document.getElementById('checkout').min = nextWeek.toISOString().slice(0, 10);
+</script>
+
+</body>
+</html>
