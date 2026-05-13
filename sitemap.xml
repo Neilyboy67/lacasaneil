@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://lacasaneil.com/</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lacasaneil.com/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lacasaneil.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lacasaneil.com/"/>
+  </url>
+  <url>
+    <loc>https://lacasaneil.com/guide/</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://lacasaneil.com/guide/calahonda-costa-del-sol/</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lacasaneil.com/guide/calahonda-costa-del-sol/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lacasaneil.com/es/guia/calahonda-costa-del-sol/"/>
+  </url>
+  <url>
+    <loc>https://lacasaneil.com/guide/malaga-airport-to-calahonda/</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://lacasaneil.com/es/</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lacasaneil.com/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lacasaneil.com/es/"/>
+  </url>
+  <url>
+    <loc>https://lacasaneil.com/es/guia/calahonda-costa-del-sol/</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lacasaneil.com/guide/calahonda-costa-del-sol/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lacasaneil.com/es/guia/calahonda-costa-del-sol/"/>
+  </url>
+  <url>
+    <loc>https://lacasaneil.com/privacy.html</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://lacasaneil.com/terms.html</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://lacasaneil.com/cookies.html</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+</urlset>
