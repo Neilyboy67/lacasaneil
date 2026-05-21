@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Availability calendar — La Casa Neil</title>
+<meta name="description" content="Live availability for La Casa Neil holiday apartment in Calahonda, Mijas. Direct + Airbnb bookings shown in one calendar." />
+
+<link rel="canonical" href="https://lacasaneil.com/calendar/" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+
+<meta property="og:title" content="Availability calendar — La Casa Neil" />
+<meta property="og:description" content="Live availability for the next six months." />
+<meta property="og:url" content="https://lacasaneil.com/calendar/" />
+<meta property="og:image" content="https://lacasaneil.com/images/hero-pools.jpg" />
+<meta property="og:type" content="website" />
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/calendar.css">
+</head>
+<body class="calendar-page">
+
+<header>
+  <div class="header-inner">
+    <a href="/" class="logo">La Casa Neil</a>
+    <nav class="nav">
+      <a href="/#about">About</a>
+      <a href="/#gallery">Gallery</a>
+      <a href="/#location">Location</a>
+      <a href="/calendar/">Calendar</a>
+      <a href="/guide/">Guide</a>
+      <a href="https://wa.me/447958679378" rel="noopener">WhatsApp</a>
+      <a href="/#enquiry" class="btn">Check availability</a>
+    </nav>
+  </div>
+</header>
+
+<section class="article-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="/">Home</a> · Calendar</div>
+    <h1>Availability calendar</h1>
+    <p class="lede">Live view of the next six months. Direct bookings and Airbnb bookings are merged in real time — what you see here is what's actually available.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container" style="max-width: 1100px;">
+    <div class="cal-legend">
+      <span><span class="swatch available"></span>Available</span>
+      <span><span class="swatch booked"></span>Booked</span>
+    </div>
+
+    <div id="cal-status" class="cal-status">Loading availability…</div>
+    <div id="calendar" class="cal-months"></div>
+
+    <div class="article-end-cta" style="margin-top: 3rem;">
+      <h3>See dates that work?</h3>
+      <p>Book direct to skip Airbnb's 14–17% booking fee. Neil replies within an hour.</p>
+      <a href="/#enquiry" class="btn">Request these dates</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <address>
+      <strong>La Casa Neil</strong><br>
+      Calahonda, Mijas<br>
+      Málaga 29649, Spain<br>
+      <a href="mailto:neilgallacher1979@gmail.com">neilgallacher1979@gmail.com</a> ·
+      <a href="https://wa.me/447958679378" rel="noopener">WhatsApp +44 7958 679378</a>
+    </address>
+    <div class="footer-row">
+      <a href="/privacy.html">Privacy</a>
+      <a href="/terms.html">Terms</a>
+      <a href="/cookies.html">Cookies</a>
+      <a href="/guide/">Guide</a>
+      <a href="/es/">Español</a>
+    </div>
+    <div>© 2026 La Casa Neil · <a href="https://www.airbnb.co.uk/rooms/40308509" target="_blank" rel="noopener noreferrer nofollow">View original Airbnb listing</a></div>
+  </div>
+</footer>
+
+<script type="module">
+  import { renderCalendar } from "/assets/calendar.js";
+
+  const status = document.getElementById("cal-status");
+  const cal = document.getElementById("calendar");
+
+  try {
+    const res = await fetch("/api/bookings", { headers: { Accept: "application/json" } });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const { bookings } = await res.json();
+    status.style.display = "none";
+    renderCalendar({ container: cal, bookings, months: 6, mode: "public" });
+  } catch (e) {
+    status.classList.add("error");
+    status.textContent = "Live calendar unavailable. Send an enquiry and Neil will confirm availability within an hour.";
+    console.error(e);
+  }
+</script>
+</body>
+</html>

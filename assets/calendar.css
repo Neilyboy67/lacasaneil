@@ -1,0 +1,136 @@
+/* Calendar page additions on top of /assets/site.css */
+
+.calendar-page .container { max-width: 1100px; }
+
+.cal-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  justify-content: center;
+  margin: 1rem 0 2rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+.cal-legend .swatch {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  margin-right: 0.4rem;
+  vertical-align: middle;
+}
+.cal-legend .swatch.available { background: var(--available); }
+.cal-legend .swatch.booked    { background: var(--booked); }
+.cal-legend .swatch.airbnb    { background: #ff5a5f; }
+.cal-legend .swatch.direct    { background: #5b8a72; }
+
+/* In admin mode, color-code booked cells by channel */
+.cal-day.booked[data-source="airbnb"]     { background: #ffd5d7; color: #a32a2f; }
+.cal-day.booked[data-source="direct"]     { background: #d6e8dd; color: #2f5b46; }
+.cal-day.booked[data-source="other"]      { background: #e2d6f0; color: #4a2f7a; }
+
+.cal-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0 2rem;
+  flex-wrap: wrap;
+}
+
+.cal-status {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 1rem 0;
+}
+.cal-status.error { color: #b85042; }
+
+/* ------------- modal ------------- */
+.modal-backdrop {
+  position: fixed; inset: 0;
+  background: rgba(28, 43, 64, 0.55);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+.modal-backdrop.open { display: flex; }
+.modal {
+  background: var(--sand);
+  border-radius: 6px;
+  padding: 1.75rem;
+  max-width: 560px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.25);
+}
+.modal h3 { margin-bottom: 1rem; }
+.modal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem 1rem;
+}
+.modal-grid .field.full { grid-column: 1 / -1; }
+.modal-grid label {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-bottom: 0.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.modal-grid input,
+.modal-grid select,
+.modal-grid textarea {
+  width: 100%;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font: inherit;
+  background: white;
+  color: var(--ink);
+}
+.modal-grid textarea { resize: vertical; min-height: 70px; }
+
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+  gap: 0.75rem;
+}
+.modal-actions .right { display: flex; gap: 0.5rem; }
+.btn-danger {
+  background: transparent;
+  color: #b85042;
+  border: 1px solid #b85042;
+  padding: 0.55rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font: inherit;
+}
+.btn-danger:hover { background: #fdf0ec; }
+.btn-secondary {
+  background: transparent;
+  color: var(--navy);
+  border: 1px solid var(--border);
+  padding: 0.55rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font: inherit;
+}
+.btn-secondary:hover { background: var(--sand-warm); }
+
+.banner {
+  background: var(--sand-warm);
+  border-left: 4px solid var(--terracotta);
+  padding: 0.85rem 1rem;
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+.banner.error { background: #fdf0ec; border-left-color: #b85042; color: #7a2e22; }
+.banner .row { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }

@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Admin — Availability calendar — La Casa Neil</title>
+<meta name="robots" content="noindex, nofollow" />
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/calendar.css">
+</head>
+<body class="calendar-page">
+
+<header>
+  <div class="header-inner">
+    <a href="/" class="logo">La Casa Neil</a>
+    <nav class="nav">
+      <a href="/calendar/">Public calendar</a>
+      <a href="https://airtable.com/app8ro5FebIDCRvJC" target="_blank" rel="noopener">Open in Airtable →</a>
+      <a href="/cdn-cgi/access/logout" class="btn">Sign out</a>
+    </nav>
+  </div>
+</header>
+
+<section class="article-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="/">Home</a> · <a href="/calendar/">Calendar</a> · Admin</div>
+    <h1>Admin · Calendar</h1>
+    <p class="lede">Click a booked day to edit. Click an empty day to add a booking. Airbnb rows are read-only (managed by Airbnb).</p>
+    <p class="byline" id="signed-in-as"></p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container" style="max-width: 1100px;">
+    <div id="banner" class="banner" style="display:none;">
+      <div class="row">
+        <div id="banner-text"></div>
+        <button type="button" class="btn-secondary" onclick="document.getElementById('banner').style.display='none'">Dismiss</button>
+      </div>
+    </div>
+
+    <div class="cal-legend">
+      <span><span class="swatch available"></span>Available</span>
+      <span><span class="swatch direct"></span>Direct / website</span>
+      <span><span class="swatch airbnb"></span>Airbnb</span>
+    </div>
+
+    <div class="cal-actions">
+      <button type="button" class="btn" id="new-booking-btn">+ New direct booking</button>
+      <button type="button" class="btn-secondary" id="refresh-btn">Refresh</button>
+    </div>
+
+    <div id="cal-status" class="cal-status">Loading bookings…</div>
+    <div id="calendar" class="cal-months"></div>
+  </div>
+</section>
+
+<!-- ===================== Edit / Add modal ===================== -->
+<div class="modal-backdrop" id="modal-backdrop">
+  <div class="modal" role="dialog" aria-labelledby="modal-title">
+    <h3 id="modal-title">Booking</h3>
+    <div id="modal-body"></div>
+
+    <form id="booking-form">
+      <div class="modal-grid">
+        <div class="field">
+          <label for="f-source">Source channel</label>
+          <select id="f-source" name="source_channel">
+            <option value="Direct">Direct</option>
+            <option value="Website-form">Website-form</option>
+            <option value="Repeat-direct">Repeat-direct</option>
+            <option value="Referral">Referral</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-status">Status</label>
+          <select id="f-status" name="status">
+            <option value="Booked">Booked</option>
+            <option value="In-stay">In-stay</option>
+            <option value="Past">Past</option>
+            <option value="Hold">Hold</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-checkin">Check in</label>
+          <input id="f-checkin" name="check_in" type="date" required>
+        </div>
+        <div class="field">
+          <label for="f-checkout">Check out</label>
+          <input id="f-checkout" name="check_out" type="date" required>
+        </div>
+        <div class="field full">
+          <label for="f-guest">Guest</label>
+          <select id="f-guest" name="guest_id">
+            <option value="">— Select existing guest or add new below —</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-new-name">New guest name (creates Guests row)</label>
+          <input id="f-new-name" type="text" placeholder="Leave blank to use selection above">
+        </div>
+        <div class="field">
+          <label for="f-new-email">New guest email</label>
+          <input id="f-new-email" type="email">
+        </div>
+        <div class="field">
+          <label for="f-adults">Adults</label>
+          <input id="f-adults" name="adults" type="number" min="0" max="10">
+        </div>
+        <div class="field">
+          <label for="f-children">Children</label>
+          <input id="f-children" name="children" type="number" min="0" max="10">
+        </div>
+        <div class="field">
+          <label for="f-total">Total €</label>
+          <input id="f-total" name="total_eur" type="number" step="0.01" min="0">
+        </div>
+        <div class="field">
+          <label for="f-paid">Paid €</label>
+          <input id="f-paid" name="paid_eur" type="number" step="0.01" min="0">
+        </div>
+        <div class="field">
+          <label for="f-payment">Payment method</label>
+          <input id="f-payment" name="payment_method" type="text" placeholder="Bank transfer / Card link / Cash">
+        </div>
+        <div class="field">
+          <label for="f-conf">Confirmation code</label>
+          <input id="f-conf" name="confirmation_code" type="text">
+        </div>
+        <div class="field full">
+          <label for="f-notes">Notes</label>
+          <textarea id="f-notes" name="notes"></textarea>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="btn-danger" id="delete-btn" style="display:none;">Delete</button>
+        <div class="right">
+          <button type="button" class="btn-secondary" id="cancel-btn">Cancel</button>
+          <button type="submit" class="btn" id="save-btn">Save</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div>© 2026 La Casa Neil · admin</div>
+  </div>
+</footer>
+
+<script type="module">
+  import { renderCalendar } from "/assets/calendar.js";
+
+  const status = document.getElementById("cal-status");
+  const cal = document.getElementById("calendar");
+  const banner = document.getElementById("banner");
+  const bannerText = document.getElementById("banner-text");
+  const modal = document.getElementById("modal-backdrop");
+  const modalTitle = document.getElementById("modal-title");
+  const modalBody = document.getElementById("modal-body");
+  const form = document.getElementById("booking-form");
+  const deleteBtn = document.getElementById("delete-btn");
+
+  let bookings = [];
+  let guests = [];
+  let editingId = null;   // Airtable record id when editing; null when creating
+
+  function notify(msg, isError = false) {
+    bannerText.textContent = msg;
+    banner.style.display = "block";
+    banner.classList.toggle("error", isError);
+  }
+
+  function showSignedInAs() {
+    // Cloudflare Access drops a CF_Authorization cookie + sets a /cdn-cgi/access/get-identity endpoint
+    fetch("/cdn-cgi/access/get-identity").then(r => r.ok ? r.json() : null).then(j => {
+      if (j?.email) document.getElementById("signed-in-as").textContent = `Signed in as ${j.email}`;
+    }).catch(() => {});
+  }
+
+  async function loadAll() {
+    status.style.display = "block";
+    status.textContent = "Loading bookings…";
+    status.classList.remove("error");
+    try {
+      const res = await fetch("/api/admin/bookings", { headers: { Accept: "application/json" } });
+      if (res.status === 401) { window.location.href = "/cdn-cgi/access/login" + encodeURIComponent(window.location.href); return; }
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json();
+      bookings = data.bookings || [];
+      guests = data.guests || [];
+      populateGuestSelect();
+      status.style.display = "none";
+      renderCalendar({
+        container: cal, bookings, months: 6, mode: "admin",
+        onDayClick: (date, booking) => openModal(date, booking),
+      });
+    } catch (e) {
+      status.classList.add("error");
+      status.textContent = `Couldn't load bookings: ${e.message}`;
+    }
+  }
+
+  function populateGuestSelect() {
+    const sel = document.getElementById("f-guest");
+    sel.innerHTML = `<option value="">— Select existing guest or add new below —</option>`;
+    for (const g of guests) {
+      const label = g.party_label || g.primary_name || g.guest_id || g.id;
+      const opt = document.createElement("option");
+      opt.value = g.id;
+      opt.textContent = label;
+      sel.appendChild(opt);
+    }
+  }
+
+  function openModal(date, booking) {
+    form.reset();
+    document.getElementById("f-new-name").value = "";
+    document.getElementById("f-new-email").value = "";
+    modalBody.innerHTML = "";
+
+    if (!booking) {
+      // Creating a new booking — prefill check-in
+      editingId = null;
+      modalTitle.textContent = "New direct booking";
+      deleteBtn.style.display = "none";
+      document.getElementById("f-checkin").value = date;
+      const next = new Date(date + "T00:00:00Z"); next.setUTCDate(next.getUTCDate() + 1);
+      document.getElementById("f-checkout").value = next.toISOString().slice(0, 10);
+      document.getElementById("f-source").value = "Direct";
+      document.getElementById("f-status").value = "Booked";
+    } else if (booking.source_channel === "Airbnb" || booking.id?.startsWith?.("airbnb:")) {
+      // Airbnb booking — read-only
+      editingId = null;
+      modalTitle.textContent = "Airbnb booking (read-only)";
+      deleteBtn.style.display = "none";
+      modalBody.innerHTML = `
+        <p style="margin-bottom: 1rem; color: var(--muted);">
+          This booking is managed by Airbnb. Edit it from your Airbnb host dashboard — changes flow back here on Airbnb's next iCal refetch (every few hours).
+        </p>
+        <p><strong>Check in:</strong> ${booking.check_in}</p>
+        <p><strong>Check out:</strong> ${booking.check_out}</p>
+        ${booking.summary ? `<p><strong>Note:</strong> ${booking.summary}</p>` : ""}
+      `;
+      form.style.display = "none";
+      modal.classList.add("open");
+      return;
+    } else {
+      // Editing an Airtable booking
+      editingId = booking.airtable_record_id || booking.id?.replace?.("airtable:", "");
+      modalTitle.textContent = `Edit booking ${booking.booking_id || ""}`.trim();
+      deleteBtn.style.display = "inline-block";
+      document.getElementById("f-source").value = booking.source_channel || "Direct";
+      document.getElementById("f-status").value = booking.status || "Booked";
+      document.getElementById("f-checkin").value = booking.check_in || "";
+      document.getElementById("f-checkout").value = booking.check_out || "";
+      document.getElementById("f-guest").value = booking.guest?.id || "";
+      document.getElementById("f-adults").value = booking.adults ?? "";
+      document.getElementById("f-children").value = booking.children ?? "";
+      document.getElementById("f-total").value = booking.total_eur ?? "";
+      document.getElementById("f-paid").value = booking.paid_eur ?? "";
+      document.getElementById("f-payment").value = booking.payment_method || "";
+      document.getElementById("f-conf").value = booking.confirmation_code || "";
+      document.getElementById("f-notes").value = booking.notes || "";
+    }
+
+    form.style.display = "";
+    modal.classList.add("open");
+  }
+
+  function closeModal() {
+    modal.classList.remove("open");
+    editingId = null;
+  }
+
+  document.getElementById("cancel-btn").addEventListener("click", closeModal);
+  modal.addEventListener("click", (e) => { if (e.target === modal) closeModal(); });
+  document.getElementById("new-booking-btn").addEventListener("click", () => {
+    openModal(new Date().toISOString().slice(0, 10), null);
+  });
+  document.getElementById("refresh-btn").addEventListener("click", loadAll);
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const fields = {
+      source_channel: document.getElementById("f-source").value,
+      status: document.getElementById("f-status").value,
+      check_in: document.getElementById("f-checkin").value,
+      check_out: document.getElementById("f-checkout").value,
+      adults: numOrNull(document.getElementById("f-adults").value),
+      children: numOrNull(document.getElementById("f-children").value),
+      total_eur: numOrNull(document.getElementById("f-total").value),
+      paid_eur: numOrNull(document.getElementById("f-paid").value),
+      payment_method: document.getElementById("f-payment").value || null,
+      confirmation_code: document.getElementById("f-conf").value || null,
+      notes: document.getElementById("f-notes").value || null,
+    };
+    const guestId = document.getElementById("f-guest").value || null;
+    const newName = document.getElementById("f-new-name").value.trim();
+    const newEmail = document.getElementById("f-new-email").value.trim();
+
+    try {
+      let finalGuestId = guestId;
+      if (newName) {
+        const r = await fetch("/api/admin/guests", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ primary_name: newName, email: newEmail || undefined }),
+        });
+        if (!r.ok) throw new Error(`new guest create failed: HTTP ${r.status}`);
+        const { guest } = await r.json();
+        finalGuestId = guest.id;
+        guests.push(guest);
+        populateGuestSelect();
+      }
+      fields.guest_id = finalGuestId || null;
+
+      let res;
+      if (editingId) {
+        res = await fetch(`/api/admin/bookings/${editingId}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(fields),
+        });
+      } else {
+        res = await fetch("/api/admin/bookings", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(fields),
+        });
+      }
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.error || `HTTP ${res.status}`);
+      }
+      closeModal();
+      notify(editingId ? "Booking updated." : "Booking created.");
+      await loadAll();
+    } catch (e) {
+      notify(`Save failed: ${e.message}`, true);
+    }
+  });
+
+  deleteBtn.addEventListener("click", async () => {
+    if (!editingId) return;
+    if (!confirm("Delete this booking? This cannot be undone.")) return;
+    try {
+      const res = await fetch(`/api/admin/bookings/${editingId}`, { method: "DELETE" });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      closeModal();
+      notify("Booking deleted.");
+      await loadAll();
+    } catch (e) {
+      notify(`Delete failed: ${e.message}`, true);
+    }
+  });
+
+  function numOrNull(v) {
+    if (v === "" || v === null || v === undefined) return null;
+    const n = Number(v);
+    return Number.isFinite(n) ? n : null;
+  }
+
+  showSignedInAs();
+  loadAll();
+</script>
+</body>
+</html>
