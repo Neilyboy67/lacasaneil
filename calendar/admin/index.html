@@ -195,11 +195,9 @@
     try {
       const res = await fetch("/api/admin/bookings", { headers: { Accept: "application/json" } });
       if (res.status === 401) {
-        // Access session lost — full reload re-triggers the Access challenge cleanly.
-        window.location.reload();
-        return;
+        throw new Error("Auth lost — open /cdn-cgi/access/logout then return here");
       }
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      if (!res.ok) throw new Error(`HTTP ${res.status}: ${(await res.text()).slice(0, 200)}`);
       const data = await res.json();
       bookings = data.bookings || [];
       guests = data.guests || [];

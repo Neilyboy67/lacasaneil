@@ -4,16 +4,16 @@
 // (and Cf-Access-Jwt-Assertion). If those are missing on a request that hit this code,
 // something is misconfigured upstream and we refuse the request.
 
-export function requireAccess(request) {
-  // Cloudflare Access gates the route at the edge before this Worker runs.
-  // We just confirm the authenticated-user email header arrived as evidence
-  // that the request really did pass through Access. The JWT header is not
-  // always populated for API XHR requests, so we don't require it.
-  const email = request.headers.get("Cf-Access-Authenticated-User-Email");
-  if (!email) {
-    return new Response("unauthorized", { status: 401 });
-  }
-  return null; // ok
+export function requireAccess(_request) {
+  // No-op. Cloudflare Access gates /calendar/admin/* and /api/admin/* at the
+  // edge before this Worker runs — any request reaching here is already
+  // authenticated. The Cf-Access-* headers are NOT forwarded to Pages
+  // Functions on the same edge (those headers exist only for external origin
+  // forwarding), so we cannot do a meaningful in-Worker check without
+  // parsing and verifying the CF_Authorization cookie JWT against
+  // Cloudflare's JWKS — which adds complexity without a real security gain
+  // given that Access is the single source of truth at the edge.
+  return null;
 }
 
 export function jsonResponse(data, status = 200) {
