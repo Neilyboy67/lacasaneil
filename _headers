@@ -1,0 +1,7 @@
+# Cloudflare Pages _headers file
+# Force the right Content-Type on the outbound iCal feed so Airbnb accepts it.
+
+/calendar.ics
+  Content-Type: text/calendar; charset=utf-8
+  Cache-Control: public, max-age=300
+  Content-Disposition: inline; filename="lacasaneil.ics"
