@@ -194,7 +194,11 @@
     status.classList.remove("error");
     try {
       const res = await fetch("/api/admin/bookings", { headers: { Accept: "application/json" } });
-      if (res.status === 401) { window.location.href = "/cdn-cgi/access/login" + encodeURIComponent(window.location.href); return; }
+      if (res.status === 401) {
+        // Access session lost — full reload re-triggers the Access challenge cleanly.
+        window.location.reload();
+        return;
+      }
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = await res.json();
       bookings = data.bookings || [];

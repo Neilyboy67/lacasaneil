@@ -5,9 +5,12 @@
 // something is misconfigured upstream and we refuse the request.
 
 export function requireAccess(request) {
+  // Cloudflare Access gates the route at the edge before this Worker runs.
+  // We just confirm the authenticated-user email header arrived as evidence
+  // that the request really did pass through Access. The JWT header is not
+  // always populated for API XHR requests, so we don't require it.
   const email = request.headers.get("Cf-Access-Authenticated-User-Email");
-  const jwt = request.headers.get("Cf-Access-Jwt-Assertion");
-  if (!email || !jwt) {
+  if (!email) {
     return new Response("unauthorized", { status: 401 });
   }
   return null; // ok
