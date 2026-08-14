@@ -611,6 +611,7 @@ header {
 .swatch.available { background: var(--available); border: 1px solid var(--available-border); }
 .swatch.booked { background: var(--booked); border: 1px solid var(--booked-border); }
 #calendar-loading { color: var(--muted); padding: 2rem; text-align: center; }
+#calendar { min-height: 16rem; }
 #calendar-error { color: #b85042; padding: 1rem; background: #fdf0ec; border-radius: 4px; margin-bottom: 1rem; display: none; }
 
 .cal-months {

@@ -582,8 +582,19 @@ function setConsent(value) { try { localStorage.setItem(COOKIE_KEY, value); } ca
 function acceptCookies() { setConsent('accepted'); document.getElementById('cookie-banner').classList.remove('show'); loadMap(); }
 function declineCookies() { setConsent('declined'); document.getElementById('cookie-banner').classList.remove('show'); }
 (function initCookieBanner() {
-  const c = getConsent();
-  if (c === null) document.getElementById('cookie-banner').classList.add('show');
+  if (getConsent() !== null) return;
+  const banner = document.getElementById('cookie-banner');
+  const hero = document.querySelector('.hero');
+  const show = () => banner.classList.add('show');
+  if (!hero || !window.matchMedia('(max-width: 800px)').matches) { show(); return; }
+  const reveal = () => {
+    if (hero.getBoundingClientRect().bottom < 72) {
+      show();
+      window.removeEventListener('scroll', reveal);
+    }
+  };
+  window.addEventListener('scroll', reveal, { passive: true });
+  reveal();
 })();
 
 // ============ MAP (load only on user gesture or after consent) ============
@@ -679,11 +690,57 @@ document.addEventListener('keydown', (e) => {
 });
 
 // ============ AVAILABILITY CALENDAR (lazy-init via IntersectionObserver) ============
-const ICAL_URL = 'https://www.airbnb.ae/calendar/ical/40308509.ics?t=926a6982b617482b9dbbf6c71addc6c5';
-const CORS_PROXY = 'https://corsproxy.io/?';
+const ICAL_SOURCES = ['/api/bookings', '/availability.ics'];
 
 let bookedDateStrings = new Set();
 let calendarLoaded = false;
+
+function addRange(startIso, endIso) {
+  const start = new Date(startIso + 'T00:00:00Z');
+  const end = new Date(endIso + 'T00:00:00Z');
+  for (let d = new Date(start); d < end; d.setUTCDate(d.getUTCDate() + 1)) {
+    bookedDateStrings.add(d.toISOString().slice(0, 10));
+  }
+}
+
+function parseIcalIntoSet(text) {
+  const eventBlocks = text.split('BEGIN:VEVENT');
+  for (let i = 1; i < eventBlocks.length; i++) {
+    const block = eventBlocks[i];
+    const startMatch = block.match(/DTSTART(?:;VALUE=DATE)?:(\d{8})/);
+    const endMatch = block.match(/DTEND(?:;VALUE=DATE)?:(\d{8})/);
+    if (!startMatch || !endMatch) continue;
+    const s = startMatch[1];
+    const e = endMatch[1];
+    addRange(s.slice(0,4)+'-'+s.slice(4,6)+'-'+s.slice(6,8), e.slice(0,4)+'-'+e.slice(4,6)+'-'+e.slice(6,8));
+  }
+}
+
+async function fetchBookedDates() {
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), 8000);
+  try {
+    const res = await fetch('/api/bookings', { signal: ctrl.signal });
+    if (res.ok) {
+      const data = await res.json();
+      const rows = (data && data.bookings) || [];
+      if (rows.length) {
+        rows.forEach((b) => { if (b.check_in && b.check_out) addRange(b.check_in, b.check_out); });
+        return;
+      }
+    }
+  } catch (e) {}
+  finally { clearTimeout(timer); }
+  const ctrl2 = new AbortController();
+  const timer2 = setTimeout(() => ctrl2.abort(), 8000);
+  try {
+    const res = await fetch('/availability.ics', { signal: ctrl2.signal });
+    if (!res.ok) throw new Error('Could not load calendar');
+    const text = await res.text();
+    if (text.indexOf('BEGIN:VCALENDAR') === -1) throw new Error('Could not load calendar');
+    parseIcalIntoSet(text);
+  } finally { clearTimeout(timer2); }
+}
 
 async function loadAvailability() {
   if (calendarLoaded) return;
@@ -692,22 +749,7 @@ async function loadAvailability() {
   const error = document.getElementById('calendar-error');
 
   try {
-    const res = await fetch(CORS_PROXY + encodeURIComponent(ICAL_URL));
-    if (!res.ok) throw new Error('Could not load calendar');
-    const text = await res.text();
-
-    const eventBlocks = text.split('BEGIN:VEVENT');
-    for (let i = 1; i < eventBlocks.length; i++) {
-      const block = eventBlocks[i];
-      const startMatch = block.match(/DTSTART(?:;VALUE=DATE)?:(\d{8})/);
-      const endMatch = block.match(/DTEND(?:;VALUE=DATE)?:(\d{8})/);
-      if (!startMatch || !endMatch) continue;
-      const start = parseICalDate(startMatch[1]);
-      const end = parseICalDate(endMatch[1]);
-      for (let d = new Date(start); d < end; d.setDate(d.getDate() + 1)) {
-        bookedDateStrings.add(d.toISOString().slice(0, 10));
-      }
-    }
+    await fetchBookedDates();
 
     loading.style.display = 'none';
     renderCalendar(bookedDateStrings);
@@ -790,13 +832,12 @@ function buildMonth(monthStart, bookedDates, todayStr) {
 
 // Lazy-init: only fetch the iCal once user is near the calendar section
 const calSection = document.getElementById('availability');
-if ('IntersectionObserver' in window) {
+loadAvailability();
+if ('IntersectionObserver' in window && calSection) {
   const calObserver = new IntersectionObserver((entries, obs) => {
     if (entries[0].isIntersecting) { loadAvailability(); obs.disconnect(); }
   }, { rootMargin: '200px' });
   calObserver.observe(calSection);
-} else {
-  loadAvailability();
 }
 
 // ============ ENQUIRY FORM ============
