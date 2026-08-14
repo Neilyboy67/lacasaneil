@@ -101,7 +101,7 @@
 }
 </script>
 </head>
-<body>
+<body class="home">
 
 <header>
   <div class="header-inner">
@@ -115,15 +115,35 @@
       <a href="https://wa.me/447958679378" rel="noopener">WhatsApp</a>
       <a href="/es/#enquiry" class="btn">Consultar fechas</a>
     </nav>
+    <a href="#availability" class="nav-dates">Fechas</a>
   </div>
 </header>
 
 <section class="hero" id="top">
-  <div class="hero-content">
-    <span class="eyebrow">La Casa Neil · Calahonda · Costa del Sol · ★ 4,68 de 25 reseñas</span>
+  <div class="hero-copy">
     <h1>Apartamento de Vacaciones de Lujo en Calahonda, Costa del Sol</h1>
     <p class="lede">Un apartamento de 2 dormitorios recién reformado en el corazón de Calahonda, Mijas. Terraza al sol con vistas al mar sin fin, 4 piscinas comunitarias y suelos de mármol. Capacidad para 4 personas. <strong>Reserva directa — sin comisiones, ahorra un 15% respecto a Airbnb.</strong></p>
-    <a href="/es/#enquiry" class="btn">Consultar disponibilidad</a>
+    <form class="hero-dates" id="hero-dates" action="#enquiry">
+      <div class="hd-field">
+        <label for="hero-checkin">Fecha de entrada</label>
+        <input id="hero-checkin" type="date" name="hero-checkin" autocomplete="off">
+      </div>
+      <div class="hd-field">
+        <label for="hero-checkout">Fecha de salida</label>
+        <input id="hero-checkout" type="date" name="hero-checkout" autocomplete="off">
+      </div>
+      <div class="hd-field">
+        <label for="hero-guests">Número de huéspedes</label>
+        <select id="hero-guests" name="hero-guests">
+          <option value="1">1 huésped</option>
+          <option value="2" selected>2 huéspedes</option>
+          <option value="3">3 huéspedes</option>
+          <option value="4">4 huéspedes</option>
+        </select>
+      </div>
+      <button type="submit" class="btn">Consultar disponibilidad</button>
+    </form>
+    <a href="#enquiry" class="btn hero-mobile-cta">Consultar disponibilidad</a>
     <div class="meta-row">
       <span>2 dormitorios</span>
       <span>·</span>
@@ -133,6 +153,12 @@
       <span>·</span>
       <span>★ 4,68 de 25 reseñas</span>
     </div>
+  </div>
+  <div class="hero-photo">
+    <picture>
+      <source type="image/webp" srcset="/images/opt/photo-02.webp">
+      <img src="/images/photo-02.jpg" srcset="/images/opt/photo-02.jpg 1200w, /images/photo-02.jpg 1920w" sizes="(max-width: 800px) 100vw, 50vw" alt="Terraza al atardecer con vistas al Mediterráneo — La Casa Neil Calahonda" width="1920" height="2560" fetchpriority="high">
+    </picture>
   </div>
 </section>
 
@@ -172,27 +198,61 @@
 
 <section class="section gallery-section" id="gallery">
   <div class="container">
-    <div style="text-align: center; margin-bottom: 2.5rem;">
+    <div class="gallery-intro">
       <span class="section-eyebrow">Recorrido fotográfico</span>
       <h2>Echa un vistazo</h2>
     </div>
-    <div class="gallery" id="gallery">
-      <a class="wide" data-idx="1"><img src="/images/hero-pools.jpg" alt="Cuatro piscinas comunitarias y palmeras con vistas al Mediterráneo en La Casa Neil, Calahonda" loading="lazy"></a>
-      <a class="tall" data-idx="2"><img src="/images/photo-02.jpg" alt="Terraza al atardecer con vistas al Mediterráneo — La Casa Neil Calahonda" loading="lazy"></a>
-      <a data-idx="3"><img src="/images/photo-21.jpg" alt="Dos piscinas comunitarias con vistas al mar en La Casa Neil, Calahonda" loading="lazy"></a>
-      <a data-idx="4"><img src="/images/photo-03.jpg" alt="Piscina comunitaria rodeada de palmeras en Calahonda" loading="lazy"></a>
-      <a data-idx="5"><img src="/images/photo-04.jpg" alt="Salón con smart TV en La Casa Neil — apartamento de vacaciones" loading="lazy"></a>
-      <a data-idx="6"><img src="/images/photo-05.jpg" alt="Dormitorio principal con vistas al mar en La Casa Neil, Calahonda" loading="lazy"></a>
-      <a class="wide" data-idx="7"><img src="/images/photo-16.jpg" alt="Exterior del edificio La Cornisa en Calahonda, Costa del Sol" loading="lazy"></a>
-      <a data-idx="8"><img src="/images/photo-06.jpg" alt="Interior del apartamento con suelos de mármol en La Casa Neil, Calahonda" loading="lazy"></a>
-      <a data-idx="9"><img src="/images/photo-13.jpg" alt="Dormitorio con dos camas individuales en La Casa Neil, Calahonda" loading="lazy"></a>
-      <a class="tall" data-idx="10"><img src="/images/photo-20.jpg" alt="Solárium luminoso con vistas al mar — La Casa Neil" loading="lazy"></a>
-      <a data-idx="11"><img src="/images/photo-14.jpg" alt="Detalle del dormitorio doble en La Casa Neil, Calahonda" loading="lazy"></a>
-      <a data-idx="12"><img src="/images/photo-15.jpg" alt="Baño de diseño en La Casa Neil — reforma 2026" loading="lazy"></a>
-      <a data-idx="13"><img src="/images/photo-17.jpg" alt="Terraza orientada al sur con barbacoa en La Casa Neil, Calahonda" loading="lazy"></a>
-      <a data-idx="14"><img src="/images/photo-18.jpg" alt="Vista desde la terraza al Mediterráneo, Calahonda Costa del Sol" loading="lazy"></a>
-      <a class="wide" data-idx="15"><img src="/images/photo-19.jpg" alt="Piscina y jardín de palmeras con vistas al mar en Calahonda" loading="lazy"></a>
-      <a data-idx="16"><img src="/images/photo-01.jpg" alt="Cocina totalmente equipada con suelos de mármol en La Casa Neil" loading="lazy"></a>
+    <div class="gallery-mosaic">
+      <a class="mosaic-large" href="/images/hero-pools.jpg" data-gallery-open="0">
+        <picture>
+          <source type="image/webp" srcset="/images/opt/hero-pools.webp">
+          <img src="/images/hero-pools.jpg" srcset="/images/opt/hero-pools.jpg 1400w, /images/hero-pools.jpg 1920w" sizes="(max-width: 800px) 100vw, 58vw" alt="Cuatro piscinas comunitarias y palmeras con vistas al Mediterráneo en La Casa Neil, Calahonda" width="1920" height="1440" loading="lazy">
+        </picture>
+      </a>
+      <div class="mosaic-smalls">
+        <a href="/images/photo-03.jpg" data-gallery-open="3">
+          <picture>
+            <source type="image/webp" srcset="/images/opt/photo-03.webp">
+            <img src="/images/photo-03.jpg" alt="Piscina comunitaria rodeada de palmeras en Calahonda" width="1920" height="1440" loading="lazy">
+          </picture>
+        </a>
+        <a href="/images/photo-01.jpg" data-gallery-open="14">
+          <picture>
+            <source type="image/webp" srcset="/images/opt/photo-01.webp">
+            <img src="/images/photo-01.jpg" alt="Cocina totalmente equipada con suelos de mármol en La Casa Neil" width="1920" height="1440" loading="lazy">
+          </picture>
+        </a>
+        <a href="/images/photo-05.jpg" data-gallery-open="5">
+          <picture>
+            <source type="image/webp" srcset="/images/opt/photo-05.webp">
+            <img src="/images/photo-05.jpg" alt="Dormitorio principal con vistas al mar en La Casa Neil, Calahonda" width="1920" height="2560" loading="lazy">
+          </picture>
+        </a>
+        <a href="/images/photo-15.jpg" data-gallery-open="10">
+          <picture>
+            <source type="image/webp" srcset="/images/opt/photo-15.webp">
+            <img src="/images/photo-15.jpg" alt="Baño de diseño en La Casa Neil — reforma 2026" width="1920" height="2560" loading="lazy">
+          </picture>
+        </a>
+      </div>
+    </div>
+    <a class="see-all" href="/images/hero-pools.jpg" data-gallery-open="0">Ver las 15 fotos</a>
+    <div class="gallery-full" hidden>
+      <a href="/images/hero-pools.jpg" data-alt="Cuatro piscinas comunitarias y palmeras con vistas al Mediterráneo en La Casa Neil, Calahonda"></a>
+      <a href="/images/photo-02.jpg" data-alt="Terraza al atardecer con vistas al Mediterráneo — La Casa Neil Calahonda"></a>
+      <a href="/images/photo-21.jpg" data-alt="Dos piscinas comunitarias con vistas al mar en La Casa Neil, Calahonda"></a>
+      <a href="/images/photo-03.jpg" data-alt="Piscina comunitaria rodeada de palmeras en Calahonda"></a>
+      <a href="/images/photo-04.jpg" data-alt="Salón con smart TV en La Casa Neil — apartamento de vacaciones"></a>
+      <a href="/images/photo-05.jpg" data-alt="Dormitorio principal con vistas al mar en La Casa Neil, Calahonda"></a>
+      <a href="/images/photo-16.jpg" data-alt="Exterior del edificio La Cornisa en Calahonda, Costa del Sol"></a>
+      <a href="/images/photo-06.jpg" data-alt="Interior del apartamento con suelos de mármol en La Casa Neil, Calahonda"></a>
+      <a href="/images/photo-20.jpg" data-alt="Solárium luminoso con vistas al mar — La Casa Neil"></a>
+      <a href="/images/photo-14.jpg" data-alt="Detalle del dormitorio doble en La Casa Neil, Calahonda"></a>
+      <a href="/images/photo-15.jpg" data-alt="Baño de diseño en La Casa Neil — reforma 2026"></a>
+      <a href="/images/photo-17.jpg" data-alt="Terraza orientada al sur con barbacoa en La Casa Neil, Calahonda"></a>
+      <a href="/images/photo-18.jpg" data-alt="Vista desde la terraza al Mediterráneo, Calahonda Costa del Sol"></a>
+      <a href="/images/photo-19.jpg" data-alt="Piscina y jardín de palmeras con vistas al mar en Calahonda"></a>
+      <a href="/images/photo-01.jpg" data-alt="Cocina totalmente equipada con suelos de mármol en La Casa Neil"></a>
     </div>
   </div>
 </section>
@@ -447,6 +507,8 @@
   </div>
 </footer>
 
+<a href="#enquiry" class="sticky-book">Consultar disponibilidad</a>
+
 <div class="cookie-banner" id="cookie-banner" role="dialog" aria-label="Consentimiento de cookies">
   <p>Usamos un conjunto pequeño de cookies para las fuentes (Google Fonts) y el mapa incrustado (Google Maps). Sin analítica, sin tracking. <a href="/cookies.html">Más info</a>.</p>
   <div class="cookie-actions">
@@ -472,26 +534,55 @@ function loadMap() {
 }
 if (getConsent() === 'accepted') loadMap();
 
-const gallery = document.getElementById('gallery');
+const gallery = document.querySelector('.gallery-full');
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
 const galleryItems = Array.from(gallery.querySelectorAll('a'));
 let currentIdx = 0;
 
+function showLightbox() {
+  const item = galleryItems[currentIdx];
+  const img = item.querySelector('img');
+  lightboxImg.src = item.getAttribute('href') || (img && img.src) || '';
+  lightboxImg.alt = item.getAttribute('data-alt') || (img && img.alt) || '';
+  lightbox.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function openGalleryAt(i) {
+  currentIdx = i;
+  showLightbox();
+}
+
 galleryItems.forEach((item, i) => {
   item.addEventListener('click', (e) => {
     e.preventDefault();
-    currentIdx = i;
-    showLightbox();
+    openGalleryAt(i);
+  });
+});
+document.querySelectorAll('[data-gallery-open]').forEach((el) => {
+  el.addEventListener('click', (e) => {
+    e.preventDefault();
+    openGalleryAt(parseInt(el.getAttribute('data-gallery-open'), 10) || 0);
   });
 });
 
-function showLightbox() {
-  const img = galleryItems[currentIdx].querySelector('img');
-  lightboxImg.src = img.src;
-  lightboxImg.alt = img.alt;
-  lightbox.classList.add('open');
-  document.body.style.overflow = 'hidden';
+const heroDates = document.getElementById('hero-dates');
+if (heroDates) {
+  heroDates.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const ci = document.getElementById('hero-checkin');
+    const co = document.getElementById('hero-checkout');
+    const g = document.getElementById('hero-guests');
+    const fci = document.getElementById('checkin');
+    const fco = document.getElementById('checkout');
+    const fg = document.getElementById('guests');
+    if (ci && fci && ci.value) fci.value = ci.value;
+    if (co && fco && co.value) fco.value = co.value;
+    if (g && fg) fg.value = g.value;
+    const target = document.getElementById('enquiry');
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+  });
 }
 function hideLightbox() {
   lightbox.classList.remove('open');
